@@ -14,24 +14,26 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="app_name">Inventory</string>
-    <string name="sell">Sell</string>
-    <string name="quantity">Quantity in Stock:</string>
-    <string name="quantity_req">Quantity in Stock <font color='#FF0000'>*</font></string>
-    <string name="item_name_req">Item Name <font color='#FF0000'>*</font></string>
-    <string name="item_price_req">Item Price <font color='#FF0000'>*</font></string>
-    <string name="save_action">Save</string>
+    <string name="app_name">Gudang Komik</string>
+    <string name="jual">Jual</string>
+    <string name="stok">Stok Tersedia:</string>
+    <string name="stok_req">Masukan Jumlah barang <font color='#FF0000'>*</font></string>
+    <string name="judul_komik">Judul Komik <font color='#FF0000'>*</font></string>
+    <string name="item_price_req">Harga Komik <font color='#FF0000'>*</font></string>
+    <string name="save_action">Simpan</string>
     <string name="item_detail_fragment_title">Item Details</string>
     <string name="add_fragment_title">Add Item</string>
     <string name="edit_fragment_title">Edit Item</string>
-    <string name="price">Price</string>
-    <string name="quantity_in_stock">Quantity\nIn Stock</string>
-    <string name="item">Item</string>
-    <string name="delete">Delete</string>
-    <string name="delete_question">Are you sure you want to delete?</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="currency_symbol">$</string>
-    <string name="edit_item">Edit Item</string>
-    <string name="add_new_item">Add new item</string>
+    <string name="harga">Harga</string>
+    <string name="rilis">Tahun Rilis</string>
+    <string name="rilis_req">Tahun Rilis</string>
+    <string name="jumlah_barang">Jumlah barang</string>
+    <string name="barang">Barang</string>
+    <string name="hapus">Hapus</string>
+    <string name="delete_question">Hapus barang dari daftar?</string>
+    <string name="tidak">Tidak</string>
+    <string name="iya">Iya</string>
+    <string name="currency_symbol">Rp </string>
+    <string name="edit_item">Edit</string>
+    <string name="tambah_barang">Tambahkan Barang Baru</string>
 </resources>

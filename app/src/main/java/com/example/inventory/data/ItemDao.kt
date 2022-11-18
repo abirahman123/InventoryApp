@@ -1,12 +1,16 @@
 package com.example.inventory.data
 
 import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 
-//class ini akan menjadi antarmuka kustom yang menyediakan
-// metode praktis untuk melakukan kueri/mengambil, memasukkan,
-// menghapus, serta memperbarui database.
+//akses objek database ke inventori database.
 @Dao
 interface ItemDao {
 //funtion untuk menambahkan item

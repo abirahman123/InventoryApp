@@ -1,40 +1,105 @@
 package com.example.inventory
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
 import kotlinx.coroutines.launch
 
-class InventoryViewModel(private val itemdao: ItemDao) : ViewModel() {
-//funtion private yang berfunbgsi untuk mengambil objek Item
+class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
+
+//  Cache semua item dari database menggunakan LiveData
+    val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData()
+
+    fun isStockAvailable(item: Item): Boolean {
+        return (item.quantityInStock > 0)
+    }
+
+    fun updateItem(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String,
+        itemRilis: String
+    ) {
+        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount, itemRilis)
+        updateItem(updatedItem)
+    }
+
+    private fun updateItem(item: Item) {
+        viewModelScope.launch {
+            itemDao.update(item)
+        }
+    }
+
+    fun sellItem(item: Item) {
+        if (item.quantityInStock > 0) {
+            // Decrease the quantity by 1
+            val newItem = item.copy(quantityInStock = item.quantityInStock - 1)
+            updateItem(newItem)
+        }
+    }
+
+    //funtion public yang menggunakan 3 string untuk detail Item.
+    fun addNewItem(itemName: String, itemPrice: String, itemCount: String, itemRilis: String) {
+        val newItem = getNewItemEntry(itemName, itemPrice, itemCount, itemRilis)
+        insertItem(newItem)
+    }
+
+    //funtion private yang berfunbgsi untuk mengambil objek Item
 // dan menambahkan data ke database dengan cara yang tidak memblokir
     private fun insertItem(item: Item) {
         viewModelScope.launch {
-            itemdao.insert(item)
+            itemDao.insert(item)
         }
     }
+
+    fun deleteItem(item: Item) {
+        viewModelScope.launch {
+            itemDao.delete(item)
+        }
+    }
+
+    fun retrieveItem(id: Int): LiveData<Item> {
+        return itemDao.getItem(id).asLiveData()
+    }
+
+//funtion private yang berfunbgsi untuk mengambil objek Item
+// dan menambahkan data ke database dengan cara yang tidak memblokir
+
+
+
 //funtion private yang menggunakan 3 string dan menampilkan instance Item.
-    private fun getNewItemEntry(itemName: String, itemPrice: String, itemCount: String): Item {
+    private fun getNewItemEntry(itemName: String, itemPrice: String, itemCount: String, itemRilis: String): Item {
         return Item(
             itemName = itemName,
             itemPrice = itemPrice.toDouble(),
-            quantityInStock = itemCount.toInt()
+            quantityInStock = itemCount.toInt(),
+            year = itemRilis.toInt()
         )
     }
 
 //funtion public yang menggunakan 3 string untuk detail Item.
-    fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
-        val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
-        insertItem(newItem)
-    }
-
-    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String): Boolean {
-        if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {
+    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String, itemRilis: String): Boolean {
+        if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank() || itemRilis.isBlank()) {
             return false
         }
         return true
+    }
+
+    private fun getUpdatedItemEntry(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String,
+        itemRilis: String
+    ): Item {
+        return Item(
+            id = itemId,
+            itemName = itemName,
+            itemPrice = itemPrice.toDouble(),
+            quantityInStock = itemCount.toInt(),
+            year = itemRilis.toInt()
+        )
     }
 }
 

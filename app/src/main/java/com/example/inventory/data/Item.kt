@@ -3,6 +3,7 @@ package com.example.inventory.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.text.NumberFormat
 
 
 //class Item digunakan untuk menampilkan entity database di aplikasi
@@ -19,5 +20,12 @@ data class Item (
     @ColumnInfo(name = "price")
     val itemPrice: Double,
     @ColumnInfo(name = "quantity")
-    val quantityInStock: Int
+    val quantityInStock: Int,
+    @ColumnInfo(name = "year")
+    val year: Int
 )
+
+//funtion untuk mengembalikan harga item yang diteruskan dalam
+// format mata uang.
+fun Item.getFormattedPrice(): String =
+    NumberFormat.getCurrencyInstance().format(itemPrice)
