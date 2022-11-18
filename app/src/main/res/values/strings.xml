@@ -14,19 +14,19 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="app_name">Gudang Komik</string>
+    <string name="app_name">Gudang Komik Indonesia</string>
     <string name="jual">Jual</string>
     <string name="stok">Stok Tersedia:</string>
-    <string name="stok_req">Masukan Jumlah barang <font color='#FF0000'>*</font></string>
+    <string name="stok_req">Masukan Jumlah Komik <font color='#FF0000'>*</font></string>
     <string name="judul_komik">Judul Komik <font color='#FF0000'>*</font></string>
     <string name="item_price_req">Harga Komik <font color='#FF0000'>*</font></string>
     <string name="save_action">Simpan</string>
-    <string name="item_detail_fragment_title">Item Details</string>
-    <string name="add_fragment_title">Add Item</string>
-    <string name="edit_fragment_title">Edit Item</string>
-    <string name="harga">Harga</string>
+    <string name="item_detail_fragment_title">Detail Komik</string>
+    <string name="add_fragment_title">Tambahkan Stok Komik</string>
+    <string name="edit_fragment_title">Edit</string>
+    <string name="harga">Harga Komik</string>
     <string name="rilis">Tahun Rilis</string>
-    <string name="rilis_req">Tahun Rilis</string>
+    <string name="rilis_req">Tahun Rilis <font color='#FF0000'>*</font></string>
     <string name="jumlah_barang">Jumlah barang</string>
     <string name="barang">Barang</string>
     <string name="hapus">Hapus</string>
